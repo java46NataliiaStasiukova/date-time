@@ -1,5 +1,6 @@
 package telran.time;
 
+import java.time.DayOfWeek;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
@@ -31,7 +32,7 @@ public WorkingDaysAdjuster() {
 	@Override
 	public Temporal adjustInto(Temporal temporal) {
 		//return new temporal matching a date after the given days
-		if(daysOff.length == 7) {
+		if(daysOff.length == DayOfWeek.values().length) {
 			return temporal;
 		}
 		do {
@@ -40,8 +41,7 @@ public WorkingDaysAdjuster() {
 					temporal = temporal.plus(1, ChronoUnit.DAYS);
 				} 
 			}
-			temporal = temporal.plus(1, ChronoUnit.DAYS);
-			
+			temporal = temporal.plus(1, ChronoUnit.DAYS);	
 		}while(nDays-- != 0);
 
 		return temporal.minus(1, ChronoUnit.DAYS);

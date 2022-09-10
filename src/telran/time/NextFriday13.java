@@ -13,11 +13,18 @@ public class NextFriday13 implements TemporalAdjuster {
 		//returns temporal matching Friday 13
 		// Friday is ChronoField.DAY_OF_WEEK == DayOfWeek.FRIDAY.ordinal() + 1
 		// 13 day of month ChronoField.DAY_OF_MONTH == 13
-		do {
-			temporal = temporal.plus(1, ChronoUnit.MONTHS).with(ChronoField.DAY_OF_MONTH, 13);
-		}while(temporal.get(ChronoField.DAY_OF_WEEK) != DayOfWeek.FRIDAY.ordinal() + 1);
-
+		temporal = ajustTemporal(temporal);
+		while(temporal.get(ChronoField.DAY_OF_WEEK) != DayOfWeek.FRIDAY.ordinal() + 1) {	
+				temporal = temporal.plus(1, ChronoUnit.MONTHS).with(ChronoField.DAY_OF_MONTH, 13);
+		}
 		return temporal;
+	}
+
+	private Temporal ajustTemporal(Temporal temporal) {
+		if(temporal.get(ChronoField.DAY_OF_MONTH) >= 13) {
+			temporal = temporal.plus(1, ChronoUnit.MONTHS);
+		}
+		return temporal.with(ChronoField.DAY_OF_MONTH, 13);
 	}
 
 }

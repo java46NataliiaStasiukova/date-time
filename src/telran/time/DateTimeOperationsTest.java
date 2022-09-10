@@ -28,7 +28,10 @@ void dateOperationsTest() {
 		TemporalAdjuster nextFriday13 = new NextFriday13();
 		assertEquals(LocalDate.of(2023, 1, 13), LocalDate.of(2022, 9, 5)
 				.with(nextFriday13));
-		assertEquals(LocalDate.of(2023, 10, 13), LocalDate.of(2023, 1, 13).with(nextFriday13));
+		assertEquals(LocalDate.of(2023, 10, 13), LocalDate.of(2023, 1, 13)
+				.with(nextFriday13));
+		assertEquals(LocalDate.of(2023, 1, 13), LocalDate.of(2023, 1, 11)
+				.with(nextFriday13));
 	}
 	@Test
 	void workingDaysTest() {
