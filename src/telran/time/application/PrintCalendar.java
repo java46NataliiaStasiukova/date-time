@@ -13,6 +13,7 @@ public class PrintCalendar {
 		DayOfWeek weekDay = DayOfWeek.valueOf("SUNDAY");
 		System.out.printf("%s\n", weekDay.getDisplayName(TextStyle.FULL,
 				Locale.forLanguageTag("he")));
+		
 		int monthYear[];
 		try {
 			monthYear = getMonthYear(args);
